@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>StromDAO - Business Object - MeterPoint</title>
+
+		<link rel="stylesheet" href="reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			section {				
+				text-align:left;
+			}		
+			body {
+				background-image: url("./stromdao_logo.png");
+				background-position:90% 90%;
+				background-size:120px;
+				background-attachment:fixed;
+				background-repeat:no-repeat;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+					<section>
+							<h1>Consens</h1>
+							<h2 style="color:#909090">for energy markets</h2>
+					</section>
+					<section>
+							<h1>Grid Connectitvity</h1>
+							<p>
+								<ul>
+									<li>Forget bilateral activities</li>
+									<li>Forget Entity Relation Model</li>
+									<li>Transactions are activities that change the consens</li>
+									<li>It only matters what matters for everyone</li>
+								</ul>
+							</p>
+					</section>
+					<section>
+							<h1>Connectivity</h1>
+							<h2>If we know...</h2>
+							<p>
+								<ul>
+									<li>Someone has a (trusted) Meter-Point-Operation</li>
+									<li>and has a (trusted) Connection</li>
+									<li>this party could become a <em>Grid Actor</em></li>
+								</ul>								
+							</p>
+					</section>
+					<section data-background-image="./img/consens.contract.png" data-data-background-size="800px" >
+						
+					</section>					
+					<section>
+							<p>
+							Of course there is some sort of process a Meter-Point-Operator is following...
+							</p>
+							<p class="fragment fade-in">
+							... like ensuring that customer is billable ..
+							</p>
+							<p class="fragment fade-in">
+							but this is all bilateral (=no one else cares).
+							</p>
+					</section>	
+					<section>
+							<h1>At the end</h1>
+							<p style="display:block;width:100%">
+								<img src="./img/consens.signature.png" style="float:left;"/>
+								<img src="./img/consens.signature.png" style="float:right;"/>
+							</p>							
+							<p>
+							There are  two signatures that could be made visible (=useable) in the blockchain. 
+							</p>
+							<p class="fragment">
+							For other contracts.	
+							</p>
+							<p class="fragment">
+							= Consens on <em>&quot;Prove of Existance&quot;</em>.
+							</p>
+					</section>
+					<section data-background-image="./img/consens.connectivity.png" data-data-background-size="800px" >
+					</section>
+					<section>
+							<h1>Storyline - Connectivity</h1>
+							<p>
+								Due to existance of MPO and DSO contract.
+							</p>
+							<p style="fragment">
+								The MPO could notariy with any reading a new <em>Deliverable Contract</em>
+							</p>
+							<p style="fragment">
+								This ensures that every consumption/generation ends up once in a <em>Deliverable Contract</em>.
+							</p>
+							<p>
+								= Consens on <em>Amount of Circulated Electricity</em>
+							</p>
+					</section>
+					<section>
+							<h1>Deliverable Contract</h1>
+							<pre>
+contract Delivery is owned {
+		address public owner;
+		address public dso;
+		uint256 public role;							
+		uint256 public startTime;
+		uint256 public endTime;
+		uint256 public power;
+		address public resolution;
+		...
+}
+							</pre>
+					</section>
+					<section data-background-image="./img/consens.deliverable.png" data-data-background-size="800px" >
+					</section>
+					<section>
+							<h1>Ownership</h1>
+							<p>Ownership is an important concept of blockchain technology.</p>
+							<p>We use it in this example to indicate that a Deliverable could be forwarded.</p>
+							<p>The MPO Contract issues a new Deliverable Contract and forwards it to the Actor.</p> 
+					</section>
+					<section>
+							<p>... but the actor does not want to care about it ...</p>
+					</section>
+					<section data-background-image="./img/consens.delegate.png" data-data-background-size="800px" >
+					</section>	
+					
+			</div>
+		</div>
+		<script src="reveal.js/lib/js/head.min.js"></script>
+		<script src="reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				center: false,
+				dependencies: [
+					{ src: 'reveal.js/plugin/markdown/marked.js' },
+					{ src: 'reveal.js/plugin/markdown/markdown.js' },
+					{ src: 'reveal.js/plugin/notes/notes.js', async: true },
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
