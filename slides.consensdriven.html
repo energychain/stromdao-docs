@@ -11,7 +11,8 @@
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
-
+		<link rel="stylesheet" href="slides.css">
+		
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -21,16 +22,7 @@
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 		<style>
-			section {				
-				text-align:left;
-			}		
-			body {
-				background-image: url("./stromdao_logo.png");
-				background-position:90% 90%;
-				background-size:120px;
-				background-attachment:fixed;
-				background-repeat:no-repeat;
-			}
+	
 		</style>
 	</head>
 	<body>
@@ -38,7 +30,7 @@
 			<div class="slides">
 					<section>
 							<h1>Consens</h1>
-							<h2 style="color:#909090">for energy markets</h2>
+							<h2>for energy markets</h2>
 					</section>
 					<section>
 							<h1>Grid Connectitvity</h1>
@@ -111,7 +103,7 @@
 					</section>
 					<section>
 							<h1>Deliverable Contract</h1>
-							<pre>
+							<pre><code data-trim data-noescape>
 contract Delivery is owned {
 		address public owner;
 		address public dso;
@@ -122,7 +114,7 @@ contract Delivery is owned {
 		address public resolution;
 		...
 }
-							</pre>
+							</code></pre>
 					</section>
 					<section data-background-image="./img/consens.deliverable.png" data-data-background-size="800px" >
 					</section>
