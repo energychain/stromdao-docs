@@ -7,8 +7,8 @@
 - [Consens for Energy Markets](./slides.consensdriven.html)
 
 # DEMO
-- [UI](https://pumped-file.glitch.me/)
-- [GLITCH](https://glitch.com/edit/#!/pumped-file)
+- [UI](https://stromdao-demo.glitch.me)
+- [GLITCH](https://glitch.com/edit/#!/stromdao-demo)
 
 ## PDF Export
 - [Consens for Energy Markets](./pdf/consensus.pdf)
