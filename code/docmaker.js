@@ -15,6 +15,7 @@ args = f => f.toString ().replace (/[\r\n\s]+/g, ' ').
               split (/\s*,\s*/);
 
 var types = [];
+var objects = [];
 
 function introspect(name,obj) {
 	var html="";
@@ -61,6 +62,8 @@ function introspect(name,obj) {
 	}		
 	html+=footer;
 	fs.writeFileSync(name+".html",html);	
+	objects.push(name);
+	
 }
 
 function saveTypes() {
@@ -89,7 +92,25 @@ for (var k in types){
          fs.writeFileSync("type_"+k+".html",html);
     }
 }	
-	
+
+var html="";
+html+=header;	
+html+="<h1>Business Objects</h1>";
+html+="<ul>";
+for (var i=0; i<objects.length;i++) {
+	html+="<li><a href='"+objects[i]+".html'>"+objects[i]+"</a></li>";
+}
+html+="</ul>";
+html+="<h1>Types</h1>";
+html+="<ul>";
+for (var k in types){
+	if (types.hasOwnProperty(k)) {
+	html+="<li><a href='type_"+k+".html'>"+k+"</a></li>";
+	}
+}
+html+="</ul>";
+html+=footer;
+fs.writeFileSync("index.html",html);
 }
 function introobject(i,node) {
 	var names=Object.getOwnPropertyNames(node);
@@ -101,6 +122,7 @@ function introobject(i,node) {
 	if(names[i].indexOf("_")!=0) {
 		try{
 		console.log(names[i]);
+		
 		var n = names[i];
 		node[names[i]].apply(this,['0x0000000000000000000000000000000000000008']).then(function(x) {
 						introspect(n,x);

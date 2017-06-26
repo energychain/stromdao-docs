@@ -8,9 +8,6 @@ PROJECT = "StromDAO Docs"
 
 all: docs publish
 
-docs: ;cd ./code && \
-   node docmaker.js ;
+docs: ;cd ./code && npm install && node docmaker.js ;
    
 publish: ;git add -A && git commit -a -m "Updated Documentation" && git push origin master;
-   
-
