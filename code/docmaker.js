@@ -27,6 +27,7 @@ function introspect(name,obj) {
 			text      = fs.readFileSync("md/"+name+".md").toString();			
 			html+= converter.makeHtml(text);		
 	}
+	html+="<a href='https://demo.stromdao.de/introspect.html?class="+name+"' class='btn btn-default'>Use in Introspect</a>";
 	html+="<h2>Methods</h2>"
 	names=Object.getOwnPropertyNames(obj);
 	for(var i=0;i<names.length;i++) {	
