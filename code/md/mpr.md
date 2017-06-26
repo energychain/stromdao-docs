@@ -6,3 +6,8 @@ StromDAO operates a *Genesis Reading* at:
 ```
 0x0000000000000000000000000000000000000008
 ```
+
+## Sample Usage
+<html>
+<script async src="//jsfiddle.net/zoernert/86kug7uy/24/embed/"></script>
+</html>
