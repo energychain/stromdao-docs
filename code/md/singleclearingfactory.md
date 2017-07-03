@@ -9,3 +9,9 @@ node.singleclearingfactory().then(function(scf) {
 });
 ```
 
+
+## Sample Usage
+
+<html>
+<script async src="//jsfiddle.net/zoernert/ertb89va/2/embed/js,html,result/"></script>
+</html>
