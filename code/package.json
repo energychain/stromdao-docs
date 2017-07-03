@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "showdown": "^1.7.1",
-    "stromdao-businessobject": "^0.4.4"
+    "stromdao-businessobject": "^0.4.7"
   }
 }
