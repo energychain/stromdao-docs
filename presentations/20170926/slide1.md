@@ -1,1 +1,1 @@
-# Wie verändert die Blockchain die Datenverwendung?
+# Wie verändert die Blockchain die Datenverarbeitung?
