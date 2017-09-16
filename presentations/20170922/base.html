@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>STROMDAO - Adam Smith meets Blockchain</title>	
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
+      <style>
+    h3 {
+			color:#909090;
+	}
+    </style>
+  </head>
+  <body>
+	<nav class="navbar navbar-default">
+		<div class="navbar-left">
+			<span class="navbar-brand">
+		  <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="account"></span>
+		  </span>
+		</div>
+	</nav>
+	<div class="container">	
+		<div class="row">
+		  <div class="col-md-12">
+			<h1>Token Processing</h1>			
+			 <h3>Meter Point</h3>
+			 <p>Based on Fury PI (SmartPI with Fury connection).</p>
+			 <div class="panel panel-default">
+					<div class="panel-heading">Virtual Meter Point</div>
+					<div class="panel-body">
+						 <div class="form-group">
+								 <label for="reading">Meter Reading</label>
+								<input type="number" class="form-control" id="reading" readonly="readonly"> 
+								
+						</div>
+					</div>
+					<div class="panel-footer">
+						<button id="save" class="btn btn-danger">Update/Save</button> (<span class="readingtime"></span>)
+					</div>
+			</div>
+			 <h3>Creation and Issue of Meter Point bound Tokens (Digital-Asset)</h3>
+			 <p>Following <a href="https://ipfs.io/ipfs/QmdHZzGUcmkjhzBEweYGDoEHq4LuPQdgDryTy59RVQmbea/base.html">the introduction to smart meter oracles</a>, any multiple digital assets may be derived from meter readings.</p>
+			 <p>Tokens are like a virtual currency, having a <strong>rule</strong> defining how new tokens get issued. For a smart meter two rules exist: Time and Power. Therefore two token contracts might be created.</p>
+				<div class="panel panel-default">
+					<div class="panel-heading">Meter Point - Token Contracts</div>
+					<div class="panel-body">						
+						<table class="table table-striped">
+						<tr><th>&nbsp;</th><th>Time Based</th><th>Power Based</th></tr>
+						<tr><th>Token Contract</th><td class="tt_address"></td><td class="pt_address"></td></tr>
+						<tr><th>Total Supply</th><td id="tt_ts"></td><td id="pt_ts"></td></tr>
+						<tr><th>You Hold</th><td id="tt_hold"></td><td id="pt_hold"></td></tr>
+					    </table>	
+					    <ul>
+							<li>Creation of contracts and issue of new tokens take aprox. 20 seconds</li>
+							<li>New tokens may be issued after each meter reading update.</li>					    
+							<li>Tokens are hold by Smart Contract owner (you)</li>
+							<li>To own a token means that this entity could control its transfer (usage).</li>
+					    </ul>				
+					</div>
+					<div class="panel-footer"><button id="createToken" class="btn btn-danger">Create Token Contract</button>&nbsp;<button id="issueToken" class="btn btn-primary" disabled="disabled">Issue Tokens</button> </div>
+				</div>				 
+			 <h3>Usage of Digital-Asset (XToken)</h3>
+			 <p>Tokens might be transfered to each address. As smart contracts have an address to. Tokens might be <em>transfered</em> to other token contracts.</p>
+			 <p>XToken is a special purpose token of the <strong>STROM</strong>DAO Business Object, allowing to exchange Token A to a new token with a multiplier.</p>
+			 <p>For XTokens the rule to issue is a set of tokens contracts with each having a multiplier.</p>
+			 <p>In this example we use the power token contract and the time token contract to form the new xtoken contract. In real world there could be multiple exchange pairs and a xtoken could be base of another xtoken contract.</p>
+			 <div class="panel panel-default">
+					<div class="panel-heading">XToken Contract</div>
+					<div class="panel-body">						
+						<table class="table table-striped">
+							<tr><th>Token Contract</th><td colspan="2"><span class="xt_address"></span></td></tr>
+							<tr><th>Total Supply</th><td id="xt_ts" colspan="2"></td></tr>
+							<tr><th>You Hold</th><td id="xt_hold" colspan="2"></td></tr>
+							<tr><th>&nbsp;</th><th>Time Based</th><th>Power Based</th></tr>
+							<tr><th>Source</th><td class="tt_address"></td><td class="pt_address"></td></tr>
+							<tr><th>Convertion Rate</th><td>Source Token*2</td><td>Source Token*3</td></tr>
+							<tr><th>&nbsp;</th><td><button id="issueXtime" class="btn btn-primary issuex">Issue Tokens</button></td><td><button id="issueXpower" class="btn btn-primary issuex">Issue Tokens</button></td></tr>
+						</table>
+						
+					</div>
+					<div class="panel-footer"><button id="createX" class="btn btn-danger" disabled="disabled">Create Token Contract</button>&nbsp;</div>
+			 </div>	
+			 <h3>Ewallet (Token Usage)</h3>
+			 <p>Tokens are digital assets. Each token contract holds a map of token holders and their balance.</p>	
+			 <p>In general an ewallet is like a virtual purse knowing a list of token contracts and providing a balance.</p>
+			 <p>An ewallet knows that a tranfer function exists, giving users a possibility to transfer ownership of an amount of tokens to another address</p>
+			  <div class="panel panel-default">
+					<div class="panel-heading">Token Ewallet</div>
+					<div class="panel-body">
+						 <div class="form-group">
+								<label for="token_contract">Token Contract</label>
+								<input type="text" class="form-control" id="token_contract"> 
+								<button id="open_token" class="btn btn-primary" style="margin-top:10px">Open</button>	
+						</div>
+						<table class="table table-striped" style="display:none" id="tkn_tbl">
+							<tr><th>Token Contract</th><td><span id="tkn_addr"></span></td></tr>
+							<tr><th>Total Supply</th><td><span id="tkn_supply"></span></td></tr>
+							<tr><th>You Hold</th><td><span id="tkn_hold"></span></td></tr>
+						</table>
+						<div id="tkn_tansfer" style="display:none">
+							<div class="form-group">
+									<label for="transferTo">Transfer To</label>
+									<input type="text" class="form-control" id="transferTo"> 
+									<label for="transferAmount">Amount of Tokens</label>
+									<input type="number" class="form-control" id="transferAmount"> 
+									<button id="transfer_tokens" class="btn btn-danger" style="margin-top:10px">transfer</button>	
+							</div>
+						</div>
+					</div>					
+			  </div>
+			<p>Blockchain technology is a concept of common consens or in case of tokens an open ledger.</p>
+			<p>Token contracts got designed by having all transfers publicly accessible. In other words, everyone connected to a blockchain could check everyones balance on every token contract.</p>
+		  		<div class="panel panel-default">
+				<div class="panel-heading">Token Viewer</div>
+		  		<div class="panel-body">
+						 <div class="form-group">
+								<label for="view_contract">Token Contract</label>
+								<input type="text" class="form-control" id="view_contract"> 
+								<label for="view_address">BC Address</label>
+								<input type="text" class="form-control" id="view_address"> 
+								<button id="view_token" class="btn btn-primary" style="margin-top:10px">View</button>	
+						</div>	
+						<table class="table table-striped" style="display:none" id="view_tbl">
+							<tr><th>Token Contract</th><td><span id="view_addr"></span></td></tr>
+							<tr><th>Total Supply</th><td><span id="view_supply"></span></td></tr>
+							<tr><th>Address Holds</th><td><span id="view_hold"></span></td></tr>
+						</table>  
+				</div>
+				</div>
+			<h3>Next steps</h3>
+			<p>So far only meter point tokens and xtokens got modelled. For an full investmentcase it might be required to model a share holder token with a fixed amount of issued tokens.</p>
+		</div>	 	
+	</div>  
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>        
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://rawgit.com/energychain/StromDAO-BusinessObject/master/dist/loader.js"></script>
+	<script src="./base.js"></script>
+  </body>
+</html>

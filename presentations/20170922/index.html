@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>StromDAO - Business Object - MeterPoint</title>
+
+		<link rel="stylesheet" href="reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			section {				
+				text-align:left;
+			}			
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">				
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">
+					<h1>Blockchain Mini Hackathon</h1>
+					<p>
+					Entwicklung eines Stromtarifes, welchen reale Stromkunden buchen können.
+					</p>										
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">
+					<h1>Agenda</h1>
+					<ol>
+						<li>Installation der Softwarekomponenten</li>
+						<li>Hallo Welt Beispiel (Stromzähler in der Blockchain)</li>
+						<li><strong>STROM</strong>DAO Business Objekt</li>
+						<li>Das Stromkonto</li>
+						<li>Entwicklung eines Stromtarifes</li>
+					</ol>								
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Vorbereitung/Installation</h2>
+				</section>
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">
+					<h2>Voraussetzungen</h2>										
+					<ul>
+						<li>Text Editor (Zum Beispiel Notepad++, Atom.io,...)</li>
+						<li>Node JS Version 7.0 (<a href="https://nodejs.org/en/download/">Download</a>)</li>
+					</ul>
+				</section>					
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">
+					<h2>Installation</h2>
+					<pre>
+npm install -g fury.network
+npm install -g stromdao-bo-mpo
+					</pre>
+					<hr/>
+					<h2>Uninstall</h2>
+					<pre>
+npm remove -g fury.network
+npm remove -g stromdao-bo-mpo
+					</pre>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<img src="./post_install.png" class="stretch">
+				</section>
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Fury.Network</h2>
+					<ul style="list-style-image: url('./fury32.png');">
+					<li>Browser basierte Entwicklungsumgebung</li>
+					<li>Zugriff auf das Business Objekt</li>
+					<li>Interaktionen mit Anwendern</li>
+					<li>Showcase Entwicklung</li>
+					<li><a href="https://fury.network">https://fury.network/</a></li>
+					</ul>
+				</section>
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>stromdao-bo-mpo</h2>
+					<ul>
+					<li>Kommandozeilen Tool</li>
+					<li>Stromzähler Ablesung</li>
+					<li>Messwerte mit Hilfe des Business Objektes verarbeiten</li>
+					<li>Tarifierung (Settlement/Clearing)</li>
+					<li><a href="https://www.npmjs.com/package/stromdao-bo-mpo">https://www.npmjs.com/package/stromdao-bo-mpo</a></li>
+					</ul>
+				</section>		
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2><strong>STROM</strong>	DAO Business Objekt</h2>
+					<ul>
+					<li>Abstraktionsschicht zur Energy Blockchain</li>
+					<li>Bibliothek für Energiewirtschaftliche Prozesse</li>
+					<li>Konsenssystem</li>					
+					<li><a href="https://www.npmjs.com/package/stromdao-businessobject">https://www.npmjs.com/package/stromdao-businessobject</a></li>
+					</ul>
+				</section>				
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Aufgabe 1: Hallo Welt</h2>
+					<p>
+					Wir wollen mit Hilfe der Kommandozeile einen Zählerwert in der Blockchain speichern und diesen im Anschluss per Webbrowser abrufen. 					
+					</p>
+				</section>
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Aufgabe 1: Hallo Welt</h2>
+<pre>
+$ stromdao-mp store ZAEHLER1337 1234
+TX: 0x67ba79a720202a4b0315fa9c1bc5847a2d18d9e7d664a6b9c50e0501b0108c7e
+</pre>
+<p>
+	Für den Zähler mit der Kennung ZAEHLER1337 wurde der Zählerstand 1234 in der Transaktion 0x67ba... geschrieben.
+</p>
+				</section>					
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Aufgabe 1: Hallo Welt</h2>
+					<p>
+					Abrufen eines Zählerwertes 
+				    <a href="https://fury.network/ipfs/Qmb41bSeYRZNyTJCdxa5jmToqWbiztBLaTPz9GXETDsgA4/base.html" target="_blank">Fury.Network (IPFS)</a>
+					</p>
+					<p>
+					Adresse des Zählers:
+					</p>
+<pre>
+$ stromdao-mp account ZAEHLER1337
+MPID ZAEHLER1337
+Address 0x4c01e6a3649cDEB08029D14bcdeB39366f9317F3
+...
+</pre>
+				</section>	
+<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Aufgabe 1: Hallo Welt</h2>
+					<iframe src="https://fury.network/ipfs/Qmb41bSeYRZNyTJCdxa5jmToqWbiztBLaTPz9GXETDsgA4/base.html" class="stretch"></iframe>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Lernziel</h2>
+					<ul>
+					<li>Jede Zählerkennung hat eine eindeutige Adresse in der Blockchain.</li>
+					<li>Zugriff auf die Blockchain kann via Browser oder Kommandozeile erfolgen.</li>
+					<li>Zählerstände bilden bereits einen Konsens.</li>
+					</ul>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Fury IDE (lokal)</h2>
+					<p>
+						Schnelles Testen und verproben von Anwender Interaktionen.
+					</p>
+					<p>
+					Anlegen eines lokalen Showcases
+					</p>
+<pre>
+$ fury init aufgabe2
+$ fury run aufgabe2
+</pre>					
+<p>
+Es wird ein Unterverzeichnis angelegt mit dem Namen <em>aufgabe2</em>. Darin ist eine <em>base.html</em> und eine <em>base.js</em>.
+</p>
+				</section>				
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Aufgabe 2: Lokale Nutzung von Fury</h2>
+					<ol>
+						<li>Herunterladen der <a href="https://fury.network/ipfs/QmNzQ1k5vszB1PmrUiLJtuefv2mDBjfQiwRrDbe82q6hfy">ZIP Datei</a></li>
+						<li>Entpacken und Überschreiben der beiden Dateien in <em>aufgabe2</em></li>
+						<li>Reload der Seite im Browser</li>
+					</ol>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Business Objekt</h2>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Business Objekt</h2>
+					<img src="./code1.png" class="stretch">
+					<p>
+					Das Business Objekt wird mit <em>node</em> angesteuert. Es ist bereits initialisiert, so dass jede Instanz eine eigene Adresse und einen eigenen privaten Schlüssel besitzt.	
+					</p>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Business Objekt</h2>
+					<img src="./code1.png" class="stretch">
+					<p>
+					Im Objekt gibt es verschiedene Domains. Hier wird Meter-Point-Reading (<em>mpr</em>) verwendet. Diese Domains entsprechend meist sogenannten Smart-Contracts in der Blockchain.
+					</p>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Business Objekt</h2>
+					<img src="./code1.png" class="stretch">
+					<p>
+					In diesem Aufruf entspricht <em>readings</em> einem Methodenaufruf im <a target="_blank" href="https://github.com/energychain/StromDAO-BusinessObject/blob/master/smart_contracts/StromDAO-BO.sol#L118-L142">Smart Contract</a>.
+					</p>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Stromkonto</h2>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Stromkonto</h2>
+					<img src="./stromkonto_1.png">
+				</section>			
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Stromkonto</h2>
+					<ul>
+					<li>Blockchain (Tokens), zeigen Besitz an (= kein Konzept für Schulden).</li>
+					<li>Datentyp ist immer Integer (Ganzzahl).</li>
+					<li>Ein Stromkonto zeigt gefilterte Transaktionen an.</li>
+					</ul>
+				</section>		
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Aufgabe 3: Verbrauchsbuchung</h2>
+<pre>
+$ stromdao-mp store --auto 69256 ZAEHLER1337 1234
+</pre>					
+					<ul>
+					<li>Öffnen einer <a href="https://fury.network/ipfs/QmTRXDZJo8aswZudEud8wriLAQMsqRLA8vp1re1GxXt8gL/base.html" target="_blank">Fury Instanz für das Stromkonto</a>.</li>
+					<li>Durchführung der Zählerablesungen.</li>
+					<li>Kontrolle der Abrechnung.</li>
+					</ul>					
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Lernziel</h2>
+					<ul>
+					<li>Das Business Objekt abstrahiert die Blockchain und den Energiemarkt.</li>
+					<li>Das Stromkonto ist ein Kontenbuch für Energieabrechnungen.</li>
+					<li>In der Energy Blockchain existieren vorgefertigte Smart Contracts.</li>
+					</ul>
+				</section>		
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Tarifentwicklung</h2>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Tarifentwicklung</h2>
+					<ul>
+						<li>Ein Stromliefervertrag besteht aus einer Vielzahl von Buchungen auf einem Stromkonto</li>
+						<li>Buchungen werden auf Basis eines Eingangsvektors (Settlement Objekt) vorgenommen</li>						
+					</ul>
+					<img src="./tarif2.png" class="stretch">
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Settlement Object</h2>					
+					<img src="./settlement_object.png" class="stretch">
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Tarifentwicklung</h2>									
+					<p>Datei <em>settlement_out.js</em> anlegen mit dem Inhalt:</p>
+<pre>
+console.log(settlement);
+</pre>					
+<p>Speichern und im Anschluss</p>
+<pre>
+$ stromdao-mp store -f settlement_out.js --de 69256 ZAEHLER1337 1234
+</pre>
+			
+					</section>
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Tarifentwicklung</h2>									
+					<p>Datei <em>settlement_simple.js</em> anlegen mit dem Inhalt:</p>
+<pre>
+global.promise = new Promise(function(resolve2, reject2) { 
+	node.stromkontoproxy("0x19BF166624F485f191d82900a5B7bc22Be569895").then(function(sko) {
+			sko.addTx(node.wallet.address,node.nodeWallet.address,settlement.cost,settlement.base).then(function(tx) {				
+					resolve2(tx);
+			});
+	});
+});
+</pre>					
+<p>Speichern und im Anschluss</p>
+<pre>
+$ stromdao-mp store -f settlement_simple.js --de 69256 ZAEHLER1337 1240
+</pre>
+			
+					</section>		
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>sko.addTx(von,an,wert,energie)</h2>									
+					<ul>
+					<li>führt die eigentliche Buchung in der Blockchain durch</li>
+					<li>kann mehrfach hintereinander für Splitbuchungen aufgerufen werden</li>
+					<li>nur bei Kosten über 0 wird eine Buchung ausgeführt</li>
+					<li>der Promise erlaubt einen Aufruf von der Komandozeile</li>
+					</ul>			
+				</section>		
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>sko.addTx(von,an,wert,energie)</h2>									
+					<ul>
+					<li>bei einem Tarif muss der settlement.cost entsprechend modifiziert werden</li>
+					<li>im Settlement Object sind alle Daten vorhanden, die zur Berechnung notwendig sind</li>
+					<li>es steht der volle Umgang von Javascript (NodeJS)  zur Verfügung</li>
+					<li>auf das Business Objekt kann zugegriffen werden</li>
+					</ul>			
+				</section>	
+			</div>
+		</div>
+		<script src="reveal.js/lib/js/head.min.js"></script>
+		<script src="reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				center: false,
+				dependencies: [
+					{ src: 'reveal.js/plugin/markdown/marked.js' },
+					{ src: 'reveal.js/plugin/markdown/markdown.js' },
+					{ src: 'reveal.js/plugin/notes/notes.js', async: true },
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
