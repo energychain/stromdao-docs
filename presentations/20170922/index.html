@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>StromDAO - Business Object - MeterPoint</title>
+		<title>Blockchain Mini Hackathon</title>
 
 		<link rel="stylesheet" href="reveal.js/css/reveal.css">
 		<link rel="stylesheet" href="reveal.js/css/theme/white.css">
@@ -289,6 +289,106 @@ $ stromdao-mp store -f settlement_simple.js --de 69256 ZAEHLER1337 1240
 					<li>auf das Business Objekt kann zugegriffen werden</li>
 					</ul>			
 				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Code-Beispiele</h2>
+				</section>
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>WG Strom</h2>
+					<p>Aufteilung der Kosten auf 3 Konten</p>
+<pre class="stretch"><code data-trim data-noescape>
+var konto1="0x6fCb57AC03CdfA7E26bc6117ceCa83b1516Af2f7";
+var konto2="0x94013490Cc86ada8D9154B085D791176F676283C";
+var konto3="0x6692BC4915Ba6f07bB309481d2198C5C25e3Fcce";
+settlement.cost=Math.round(settlement.cost/3)
+global.promise = new Promise(function(resolve2, reject2) { 
+	node.stromkontoproxy("0x19BF166624F485f191d82900a5B7bc22Be569895").then(function(sko) {
+		sko.addTx(<mark>konto1</mark>,node.nodeWallet.address,settlement.cost,settlement.base).then(function(tx) {
+			sko.addTx(<mark>konto2</mark>,node.nodeWallet.address,settlement.cost,settlement.base).then(function(tx) {
+				sko.addTx(<mark>konto3</mark>,node.nodeWallet.address,settlement.cost,settlement.base).then(function(tx) {
+					resolve2(tx);
+				});
+			});
+		});
+	});	
+});	
+</code></pre>
+				</section>		
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Provision</h2>
+					<p>1% geht an Vertriebspartner</p>
+<pre class="stretch"><code data-trim data-noescape>
+var vpkonto="0x6fCb57AC03CdfA7E26bc6117ceCa83b1516Af2f7";
+settlement.cost=Math.round(settlement.cost/3)
+global.promise = new Promise(function(resolve2, reject2) { 
+	node.stromkontoproxy("0x19BF166624F485f191d82900a5B7bc22Be569895").then(function(sko) {
+		sko.addTx(node.wallet.address,node.nodeWallet.address,settlement.cost,settlement.base).then(function(tx) {
+			sko.addTx(node.nodeWallet.address,<mark>vpkonto</mark>,Math.round(settlement.cost*0.01),settlement.base).then(function(tx) {				
+					resolve2(tx);				
+			});
+		});
+	});	
+});	
+</code></pre>
+				</section>		
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Provision</h2>
+					<p>1% der Energiekosten gehen an Vertriepspartner</p>
+<pre class="stretch"><code data-trim data-noescape>
+var vpkonto="0x6fCb57AC03CdfA7E26bc6117ceCa83b1516Af2f7";
+settlement.cost=Math.round(settlement.cost/3)
+global.promise = new Promise(function(resolve2, reject2) { 
+	node.stromkontoproxy("0x19BF166624F485f191d82900a5B7bc22Be569895").then(function(sko) {
+		sko.addTx(node.wallet.address,node.nodeWallet.address,settlement.cost,settlement.base).then(function(tx) {
+			sko.addTx(node.nodeWallet.address,<mark>vpkonto</mark>,Math.round(<mark>settlement.UpGross</mark>*0.01),settlement.base).then(function(tx) {				
+					resolve2(tx);				
+			});
+		});
+	});	
+});	
+</code></pre>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>EEG-Umlage</h2>
+					<p>6,880 ct/kWh werden auf EEG Konto transferiert</p>
+<pre class="stretch"><code data-trim data-noescape>
+var eegkonto="0x6fCb57AC03CdfA7E26bc6117ceCa83b1516Af2f7";
+settlement.cost=Math.round(settlement.cost/3)
+global.promise = new Promise(function(resolve2, reject2) { 
+	node.stromkontoproxy("0x19BF166624F485f191d82900a5B7bc22Be569895").then(function(sko) {
+		sko.addTx(node.wallet.address,node.nodeWallet.address,settlement.cost,settlement.base).then(function(tx) {
+			sko.addTx(node.nodeWallet.address,<mark>eegkonto</mark>,Math.round(<mark>settlement.base*6880</mark>),settlement.base).then(function(tx) {				
+					resolve2(tx);				
+			});
+		});
+	});	
+});	
+</code></pre>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Oder...</h2>									
+					<ul>
+					<li>Strompreis dynamisch nach Verfügbarkeit von Grünstrom: <a href="http://mix.stromhaltig.de/gsi/">Grünstrom Index</a></li>
+					<li>Happy-Hour (jeden Abend um 17:00 Uhr Strom zum halben Preis)</li>					
+					<li>Stunde Strom geschenkt</li>
+					<li>Jede Kilo-Wattstunde ist ein Coin (Beteiligung) an einer Anlage</li>
+					</ul>			
+				</section>				
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Happy Hacking...</h2>
+					<ul>
+						<li><a href="https://github.com/energychain/StromDAO-BusinessObject"><STRONG>STROM</STRONG>DAO Business Objekt - Github</a></li>
+						<li><a href="http://docs.stromdao.de/code/"><STRONG>STROM</STRONG>DAO Business Objekt - Dokumentation</a></li>
+						<li><a href="https://gitter.im/stromdao/BusinessObject"><STRONG>STROM</STRONG>DAO Business Objekt - Gitter (Chat)</a></li>						
+					</ul>
+				</section>	
+				<section data-background-image="./stromdao_logo.png" data-background-size="120px" data-background-position="90% 90%">																	
+					<h2>Vielen Dank</h2>
+					<p>
+					Thorsten Zoerner<br/>
+					Tel: +49 (0) 30 12084890<br/>
+					thorsten.zoerner@stromdao.com<br/>
+					</p>
+				</section>					
 			</div>
 		</div>
 		<script src="reveal.js/lib/js/head.min.js"></script>
