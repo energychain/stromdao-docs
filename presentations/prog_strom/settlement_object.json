@@ -1,0 +1,42 @@
+{ tarif: 
+   { '164fb093ddc8e8a0c13605eca8760abc': 
+      { GeoKey: '164fb093ddc8e8a0c13605eca8760abc',
+        Zipcode: '69256',
+        City: 'Mauer',
+        District: '',
+        CustomCode: '',
+        UsageStart: 1,
+        UsageEnd: 100000,
+        BpNet: 102.56,
+        BpGross: 122.04639999999999,
+        UpNet: 20.089,
+        UpGross: 23.90591,
+        BoNet: 0,
+        BoGross: 0,
+        BoNewNet: 0,
+        BoNewGross: 0,
+        BoInstantNet: 0,
+        BoInstantGross: 0,
+        BoPercent: 0,
+        Net: '65929202',
+        Total: 705.23 } },
+  BpGross: 1220464000,
+  UpGross: 2390591,
+  account: '0x0296afd730457408cEBaf0dB2373d541423E0ACf',
+  node_account: '0xEDFC2EE5ef07c8Bd9309c301e4008475A9d5F523',
+  start: 
+   Result {
+     '0': BigNumber { _bn: <BN: 59bce7c5> },
+     '1': BigNumber { _bn: <BN: fb> },
+     time: BigNumber { _bn: <BN: 59bce7c5> },
+     power: BigNumber { _bn: <BN: fb> },
+     length: 2 },
+  end: 
+   Result {
+     '0': BigNumber { _bn: <BN: 59bce7f1> },
+     '1': BigNumber { _bn: <BN: fc> },
+     time: BigNumber { _bn: <BN: 59bce7f1> },
+     power: BigNumber { _bn: <BN: fc> },
+     length: 2 },
+  cost: 4094,
+  base: 1 }
